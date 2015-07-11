@@ -1,8 +1,33 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background: #c34a49;
+    color:#fbfff9;
 }
-
-a {
-  color: #00B7FF;
+@media (min-width: 768px) {
+    .sidebar-nav{
+        margin-top:8px;
+    }
+    .sidebar-nav .navbar .navbar-collapse {
+        padding: 0;
+        max-height: none;
+    }
+    .sidebar-nav .navbar ul {
+        float: none;
+    }
+    .sidebar-nav .navbar ul:not {
+        display: block;
+    }
+    .sidebar-nav .navbar li {
+        float: none;
+        display: block;
+    }
+    .sidebar-nav .navbar li a {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+}
+.well{
+    height:200px;
+    max-height: 200px;
+    overflow-y:scroll;
+    color:#101010;
 }
