@@ -5,6 +5,17 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var Twitter = require('twitter');
+
+//Add your config.js file in main directory with details
+/*
+Example:
+ exports.consumer_key = '';
+ exports.consumer_secret = '';
+ exports.access_token_key = '';
+ exports.access_token_secret = '';
+
+* */
+
 var config = require("./config");
 
 var client = new Twitter({
