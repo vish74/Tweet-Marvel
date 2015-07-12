@@ -4,26 +4,21 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var Twitter = require('twitter');
+
 
 //Add your config.js file in main directory with details
 /*
 Example:
+--twitter
  exports.consumer_key = '';
  exports.consumer_secret = '';
  exports.access_token_key = '';
  exports.access_token_secret = '';
 
+ --Marvel--
+ exports.publickey = '';
+ exports.privatekey = '';
 * */
-
-var config = require("./config");
-
-var client = new Twitter({
-  consumer_key: config.consumer_key ,
-  consumer_secret: config.consumer_secret,
-  access_token_key: config.access_token_key,
-  access_token_secret: config.access_token_secret
-});
 
 var routes = require('./routes/');
 
@@ -42,7 +37,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes.index);
+app.get('/', routes.index);
+app.get('/tweet', routes.index);
+app.post('/tweet', routes.tweet);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -14,19 +14,24 @@ html
                     .col-md-4
                     .col-md-6
                 .col-md-10.col-md-offset-1
+                    h1=state
                     form.form-horizontal(method='POST', action='/tweet')
                         fieldset
                             // Form Name
                             legend
                             // Text input
                             .form-group
-                                label.col-md-4.control-label(for='tweetinput') Tweet
+                                label.col-md-4.control-label(for='tweetinput') Marvel Character
                                 .col-md-4
                                     input#textinput.form-control.input-md(name='tweetinput', type='text', placeholder='Your Tweet', maxlength='160', required='')
+                            .form-group
+                                label.col-md-4.control-label(for='statusinput') Status
+                                .col-md-4
+                                    input#textinput.form-control.input-md(name='statusinput', type='text', placeholder='Your Status', maxlength='160')
                             // Button
                             .form-group
                                 label.col-md-4.control-label(for='button')
                                 .col-md-4
-                                    button#singlebutton.btn.btn-primary(name='button') Tweet This
+                                    button#singlebutton.btn.btn-primary(name='button') Tweet This!
     script(src='/javascripts/jquery-1.11.3.min.js')
     script(src='/javascripts/bootstrap.min.js')
