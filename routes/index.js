@@ -15,10 +15,11 @@ var client = new Twitter({
 exports.index = function (req, res) {
     res.render('index');
 };
-exports.tweet = function (req, res) {
-    var tw = req.body.tweetinput;
-    var sw = req.body.statusinput;
 
+//Tweet function
+exports.tweet = function (req, res) {
+    var tw = req.body.tweetinput; //Get Character name from TextBox
+    var sw = req.body.statusinput; //Get Status from TextBox
 
     var ts = parseInt(Date.now() / 1000, 10);
     var preHash = ts + config.privatekey + config.publickey, hash = crypto.createHash('md5').update(preHash).digest('hex');
@@ -39,33 +40,38 @@ exports.tweet = function (req, res) {
         }
         else {
             try {
+
                 var post_image = response.body.data.results[0].thumbnail.path + '.jpg';
+                var post_image_data = post_image.indexOf('image_not_available');
 
-                var download = function (uri, filename, callback) {
-                    request.head(uri, function (err, res, body) {
-                        request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                    });
-                };
-                download(post_image, 'image.jpg', function () {
+                if (post_image_data == -1) {
+                    var download = function (uri, filename, callback) {
+                        request.head(uri, function (err, res, body) {
+                            request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+                        });
+                    };
+                    download(post_image, 'image.jpg', function () {
 
-                    var post_image_get = fs.readFileSync('image.jpg');
+                        var post_image_get = fs.readFileSync('image.jpg');
+                        client.post('media/upload', {media: post_image_get}, function (error, media, response) {
 
-                    client.post('media/upload', {media: post_image_get}, function (error, media, response) {
+                            if (!error) {
+                                var status = {
+                                    status: sw,
+                                    media_ids: media.media_id_string // Pass the media id string
+                                }
+                                client.post('statuses/update', status, function (error, tweet, response) {
+                                    res.render('index', {state: 'Image Posted with Status'});
+                                });
 
-                        if (!error) {
-                            var status = {
-                                status: sw,
-                                media_ids: media.media_id_string // Pass the media id string
                             }
-                            client.post('statuses/update', status, function (error, tweet, response) {
-                                res.render('index',{state: 'Image Posted with Status'});
-                            });
+                        });
 
-                        }
                     });
-
-
-                });
+                }
+                else {
+                    res.render('index', {state: tw+' Image Not Found on Marvel Server'});
+                }
             }
             catch (err) {
                 res.render('index', {state: 'No Character Found / Character Image Not Found'});
