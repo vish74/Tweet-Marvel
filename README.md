@@ -8,7 +8,7 @@ Sometimes just for fun, you do this.
 <br>
 It is a simple Node.JS application that tweets the image of your favourite Marvel Superhero on call...
 <br>
-I have provided the list of all character in character_list.txt
+I have provided the list of all character in character_list.txt (Take the exact name. And dont blame me if Marvel Server doesn't have that superhero image...Are we cool for that?)
 <br>
 <br>
 You can also add status with the tweet.
