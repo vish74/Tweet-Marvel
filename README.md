@@ -13,10 +13,15 @@ This can be used for fun and mainly for fun. And free free free for anyone to us
 Ohk...I am dumbing down for the steps.(Kidding...Nah...you are an intelligent fellow. :) )
 
 1) Grab the code. Fork the Repo or Clone the Repo or Download the code.
+<br>
 2) Extract it in your local folder.
+<br>
 3) Goto the folder and do 'npm install' (Ohh...Wait i thought you know how to work with NodeJS)
+<br>
 4) And then start the app 'node app.js'
+<br>
 5) Open your browser localhost:3000
+<br>
 
 !Important
 You need to edit 'sample.config.js'. Provide all token secrets inside. And rename it to 'config.js'. 
